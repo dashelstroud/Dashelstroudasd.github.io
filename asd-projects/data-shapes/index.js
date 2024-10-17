@@ -77,7 +77,7 @@ $(document).ready(function () {
   function handleBad(data,repeat){
     repeat = repeat+=1
     setBackgroundWithMixed(data,repeat)
-    animationDetails.displayType = 3
+    animationDetails.displayType = 3;
   }
 
   /////////////////////////////////////////////////
@@ -97,11 +97,12 @@ $(document).ready(function () {
 
     // TODO 5-b: call your handleBad function
     function badDisplay() {
-    var currentShape = dataShapes[currentIndex].shape
+    var currentShape = dataShapes[currentIndex]
     var repeat = currentShape.repeat
-    handleBad(currentShape,repeat)
+    handleBad(currentShape, repeat)
   }
- 
+
+
 
   /////////////////////////////////////////////////
   // ALL OF YOUR CODE SHOULD GO ABOVE HERE ////////
