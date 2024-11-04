@@ -115,18 +115,19 @@ function moveSnake() {
   column/row properties. 
   
   */
-  for ( /* code to loop through the indexes of the snake.body Array*/ ) {
-    var snakeSquare = "???";
 
-    var nextSnakeSquare = "???";
-    var nextRow = "???";
-    var nextColumn = "???";
-    var nextDirection = "???";
-
+  for (var i =snake.body.length; i > 0; i-- ) {
+    var snakeSquare = snake.body[i];
+    var nextSnakeSquare = snakeSquare[i-1]
+    var nextRow = nextSnakeSquare.row;
+    var nextColumn = nextSnakeSquare.column;
+    var nextDirection = nextSnakeSquare.direction;
     snakeSquare.direction = nextDirection;
     snakeSquare.row = nextRow;
     snakeSquare.column = nextColumn;
-    repositionSquare(snakeSquare);
+    
+    repositionSquare()
+    
 }
 
   //Before moving the head, check for a new direction from the keyboard input
@@ -142,15 +143,15 @@ function moveSnake() {
   if (snake.head.direction === "left") {
     snake.head.column = snake.head.column - 1;
   }
-  repositionSquare(snake.head);
+  
   if (snake.head.direction === "right") {
     snake.head.column = snake.head.column + 1;
   }
-  repositionSquare(snake.head);
+  
   if (snake.head.direction === "up") {
     snake.head.row = snake.head.row -= 1;
   }
-  repositionSquare(snake.head);
+  
   if (snake.head.direction === "down") {
     snake.head.row = snake.head.row += 1;
   }
