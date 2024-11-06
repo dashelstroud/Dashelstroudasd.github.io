@@ -97,7 +97,8 @@ function checkForNewDirection(event) {
   }
   if (activeKey === KEY.DOWN) {
     snake.head.direction = "down";
-  }  if (activeKey === KEY.RIGHT) {
+  }  
+  if (activeKey === KEY.RIGHT) {
     snake.head.direction = "right";
   }
   // FILL IN THE REST
@@ -116,19 +117,22 @@ function moveSnake() {
   
   */
 
-  for (var i =snake.body.length; i > 0; i-- ) {
+  for ( var i = snake.body.length - 1; i > 0; i-- ) {
     var snakeSquare = snake.body[i];
-    var nextSnakeSquare = snakeSquare[i-1]
+    var nextSnakeSquare = snake.body[i - 1];
+
     var nextRow = nextSnakeSquare.row;
     var nextColumn = nextSnakeSquare.column;
     var nextDirection = nextSnakeSquare.direction;
+
     snakeSquare.direction = nextDirection;
     snakeSquare.row = nextRow;
     snakeSquare.column = nextColumn;
-    
-    repositionSquare()
-    
+
+    repositionSquare(snakeSquare);
 }
+
+
 
   //Before moving the head, check for a new direction from the keyboard input
   checkForNewDirection();
@@ -142,22 +146,26 @@ function moveSnake() {
   */
   if (snake.head.direction === "left") {
     snake.head.column = snake.head.column - 1;
+    repositionSquare(snake.head);
   }
   
   if (snake.head.direction === "right") {
     snake.head.column = snake.head.column + 1;
+    repositionSquare(snake.head);
   }
   
   if (snake.head.direction === "up") {
     snake.head.row = snake.head.row -= 1;
+    repositionSquare(snake.head);
   }
   
   if (snake.head.direction === "down") {
     snake.head.row = snake.head.row += 1;
+    repositionSquare(snake.head);
   }
-  repositionSquare(snake.head);
-}
 
+}
+repositionSquare(snake.head);
 function hasHitWall() {
   /* 
   TODO 8: Should return true if the snake's head has collided with the four walls of the
@@ -239,6 +247,10 @@ function hasCollidedWithSnake() {
   head and each part of the snake's body also knows its own row and column.
   
   */
+  if(snake.body[0].row === snake.body.row && snake.body[0] === snake.body.column ){
+
+  }
+
 
   return false;
 }
