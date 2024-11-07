@@ -47,6 +47,12 @@ function init() {
   // initialize the snake's body as an empty Array
 snake.body = [];
 
+
+
+
+$("body").css("background-image","url('https://media.tenor.com/Jd-q2EdmHz4AAAAj/wolf.gif')")
+
+
 // make the first snakeSquare and set it as the head
 makeSnakeSquare(10, 10);
 snake.head = snake.body[0];
@@ -183,6 +189,7 @@ else{
   
 }
 
+
 function hasCollidedWithApple() {
   /* 
   TODO 9: Should return true if the snake's head has collided with the apple, 
@@ -281,6 +288,23 @@ function endGame() {
   clearInterval(updateInterval);
 
   // clear board of all elements
+  var number = Math.floor(Math.random()*5) 
+if(number === 0){
+  alert("You stink looser")
+}
+else if(number === 1){
+alert("Get better at snaking ya fool")
+}
+else if(number === 2){
+  alert("It was a good try")
+  }
+  else if(number === 3){
+    alert("Maybe if you were paying attention instead of looking at the really cool wolves you would have won")
+    }
+    else if(number === 4){
+      alert("Skill issue")
+      }
+
   board.empty();
 
   // update the highScoreElement to display the highScore
