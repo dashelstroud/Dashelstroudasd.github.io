@@ -50,7 +50,7 @@ snake.body = [];
 
 
 
-$("body").css("background-image","url('https://media.tenor.com/Jd-q2EdmHz4AAAAj/wolf.gif')")
+$("body").css("background-image","url('https://imgcdn.stablediffusionweb.com/2024/9/14/e84c4fac-4079-4bf4-baf5-c5409b982153.jpg')")
 
 
 // make the first snakeSquare and set it as the head
@@ -212,6 +212,7 @@ function handleAppleCollision() {
   score++;
   scoreElement.text("Score: " + score);
 
+
   // Remove existing Apple and create a new one
   apple.element.remove();
   makeApple();
@@ -264,30 +265,17 @@ function hasCollidedWithSnake() {
   return false;
 
 
-
- /*
-   for (var i = 1; i < snake.body.length ; i++) { 
-    var snakeSquare = snake.body[i]; 
-
-    
-    if (snake.head.row === snakeSquare.row && snake.head.column === snakeSquare.column) {
-      return true; 
-    }
-  }
-  return false;
-}
- */ 
-  
-
-
-
 }
 
 function endGame() {
   // stop update function from running
   clearInterval(updateInterval);
 
+
+
   // clear board of all elements
+  $("body").css("background-image","url('https://banner2.cleanpng.com/20180217/ttw/av14zw8ji.webp')")
+
   var number = Math.floor(Math.random()*5) 
 if(number === 0){
   alert("You stink looser")
@@ -304,6 +292,7 @@ else if(number === 2){
     else if(number === 4){
       alert("Skill issue")
       }
+      
 
   board.empty();
 
