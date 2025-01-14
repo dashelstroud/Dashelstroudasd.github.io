@@ -46,7 +46,9 @@ function runProgram(){
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on('keydown', handleKeyDown);
-  $(document).on('keyup', handleKeyUp);                           // change 'eventType' to the type of event you want to handle
+  $(document).on('keyup', handleKeyUp);  
+
+                     // change 'eventType' to the type of event you want to handle
 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -158,6 +160,41 @@ function runProgram(){
       walker2.posY -= walker2.speedY  
     }
   }
+
+//other thing
+
+function doCollide(object1, object2) {
+  // sides of the square1
+  object1.leftX = object1.posX;
+  object1.topY = object1.posY;
+  object1.rightX = object1.posX + object1.width;
+  object1.bottomY = object1.posY + object1.height;
+  
+  // TODO: Do the same for square2
+
+  object2.leftX = object2.posX;
+  object2.topY = object2.posY;
+  object2.rightX = object2.posX + object2.width;
+  object2.bottomY = object2.posY + object2.height;
+
+  // TODO: Return true if they are overlapping, false otherwise
+
+if(
+  object2.rightX > object1.leftX &&
+  object2.leftX < object1.rightX &&
+  object2.topY < object1.bottomY &&
+  object2.bottomY > object1.topY
+){
+    console.log("bazinga");
+  }
+else{
+  console.log('el stinko')
+}
+  
+}
+
+doCollide(walker, walker2);  
+
 
 
 
