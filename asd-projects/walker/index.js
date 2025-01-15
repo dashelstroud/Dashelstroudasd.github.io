@@ -35,7 +35,10 @@ function runProgram(){
     posY:200,
     speedX: 0,
     speedY:0,
+    width: $("#walker2").width(),
+    height: $("#walker2").height(),
   }
+
 
   const BOARD_WIDTH = $("#board").width()
   const BOARD_HEIGHT = $("#board").height()
@@ -62,6 +65,7 @@ function runProgram(){
     repositionGameItem();
     redrawGameItem();
     wallCollision();
+    doCollide(walker,walker2)
   }
   
   /* 
@@ -161,39 +165,29 @@ function runProgram(){
     }
   }
 
-//other thing
-
-function doCollide(object1, object2) {
-  // sides of the square1
-  object1.leftX = object1.posX;
-  object1.topY = object1.posY;
-  object1.rightX = object1.posX + object1.width;
-  object1.bottomY = object1.posY + object1.height;
-  
-  // TODO: Do the same for square2
-
-  object2.leftX = object2.posX;
-  object2.topY = object2.posY;
-  object2.rightX = object2.posX + object2.width;
-  object2.bottomY = object2.posY + object2.height;
-
-  // TODO: Return true if they are overlapping, false otherwise
-
-if(
-  object2.rightX > object1.leftX &&
-  object2.leftX < object1.rightX &&
-  object2.topY < object1.bottomY &&
-  object2.bottomY > object1.topY
-){
-    console.log("bazinga");
+  function doCollide(walker1, walker2) {
+    if (
+      walker2.posX < walker1.posX + walker1.width &&
+      walker2.posX + walker2.width > walker1.posX &&
+      walker2.posY < walker1.posY + walker1.height &&
+      walker2.posY + walker2.height > walker1.posY
+    ) {
+      stopTouchingMe()
+    } else {
+      console.log('el');
+    }
   }
-else{
-  console.log('el stinko')
 }
+  function stopTouchingMe(){
+    walker.posX = 0
+    walker2.posX = 200
+    alert('Stop Touching Me')
+  }
   
-}
 
-doCollide(walker, walker2);  
+
+
+ 
 
 
 
@@ -205,5 +199,6 @@ doCollide(walker, walker2);
     // turn off event handlers
     $(document).off();
   }
+
+
   
-}
