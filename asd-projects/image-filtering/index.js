@@ -20,10 +20,13 @@ function resetAndRender() {
 // all of your apply functions
 function applyAndRender() {
   // Multiple TODOs: Call your apply function(s) here
-  applyFilter(reddify)
-  applyFilter(decreaseBlue)
-  applyFilter(increaseGreenByBlue)
-  
+  //applyFilter(reddify)
+  //applyFilter(decreaseBlue)
+  //applyFilter(increaseGreenByBlue)
+
+  applyFilterNoBackground(reddify)
+  applyFilterNoBackground(decreaseBlue)
+  applyFilterNoBackground(increaseGreenByBlue)
 
   // do not change the below line of code
   render($("#display"), image);
@@ -47,20 +50,25 @@ function applyFilter(filterFunction){
 }
 // TODO 7: Create the applyFilterNoBackground function
 function applyFilterNoBackground(filterFunction){
-var backgroundColor = image[0][0]
+  var backgroundColor = image[0][0]
+
   for(var i = 0; i < image.length; i++){
     for(var j = 0; j < image[i].length; j++){
       var rgbString = image[i][j]
-      var rgbNumbers = rgbStringToArray(rgbString)
-      filterFunction(rgbNumbers)
-      rgbString = rgbArrayToString(rgbNumbers)
-       image[i][j] = rgbString
+
+      if(image[i][j] !== backgroundColor){
+        var rgbNumbers = rgbStringToArray(rgbString)
+        filterFunction(rgbNumbers)
+        rgbString = rgbArrayToString(rgbNumbers)
+        image[i][j] = rgbString
+      }
+      
     }
   }
 }
 
 // TODO 5: Create the keepInBounds function
-function keepInBounds(number){
+/*function keepInBounds(number){
   if(number < 0){
     return 0
   }
@@ -70,10 +78,14 @@ else if(number > 255){
 else if(number >= 0 && number <= 255){
   return number
 }
-  
-
 }
-
+*/
+function keepInBounds(number){
+  number  = (number < 0) ? 0
+  :(number > 255) ? 255
+  :number
+  return number;
+}
 //console.log(keepInBounds(-30)); // should print 0
 //console.log(keepInBounds(300)); // should print 255
 //console.log(keepInBounds(127)); // should print 127
